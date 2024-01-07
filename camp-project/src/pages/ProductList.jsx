@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Icon, Label, Menu, Table } from 'semantic-ui-react'
+import { Button, Icon, Menu, Table } from 'semantic-ui-react'
 import CarService from '../services/productService'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../store/actions/cartActions'
+import { toast } from "react-toastify"
 
 export default function CarList() {
+
+    const dispatch = useDispatch()
 
     const [cars, setCars] = useState([])
 
@@ -11,6 +16,11 @@ export default function CarList() {
         let carService = new CarService()
         carService.getCars().then(result=>setCars(result.data))
     },[])
+
+    const handleAddToCart = (car) =>{
+        dispatch(addToCart(car))
+        toast.success(`${car.modelName} sepete eklendi.`)
+    }
 
     return (
         <div>
@@ -22,6 +32,7 @@ export default function CarList() {
                         <Table.HeaderCell>Durum</Table.HeaderCell>
                         <Table.HeaderCell>Kira Ücreti</Table.HeaderCell>
                         <Table.HeaderCell>Marka İsmi</Table.HeaderCell>
+                        <Table.HeaderCell></Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -34,6 +45,7 @@ export default function CarList() {
                                 <Table.Cell>{car.situation}</Table.Cell>
                                 <Table.Cell>{car.dailyPrice}</Table.Cell>
                                 <Table.Cell>{car.brand.name}</Table.Cell>
+                                <Table.Cell><Button onClick={()=>handleAddToCart(car)}>Sepete Ekle</Button></Table.Cell>
                             </Table.Row>
                         ))
                     }
