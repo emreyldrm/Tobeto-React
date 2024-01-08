@@ -1,5 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { useSelector } from 'react-redux';
+import { AuthContext } from '../contexts/AuthContext';
 export default function Navbar() {
+
+	const cartState = useSelector(state => state.cart);
+	console.log(cartState)
+
+	const authContext = useContext(AuthContext);
+	console.log(authContext);
 	
 	return (
 		<nav
