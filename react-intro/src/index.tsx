@@ -5,9 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { configureStore } from './components/store/configureStore';
+import { configureStore } from './components/store2/configureStore';
 import { AuthProvider } from './contexts/AuthContext';
-import { store } from './components/store/store';
+import { store } from './store/store';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ProductService from '../../services/productService';
 import { HttpStatusCode } from 'axios';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../store/cartSlice';
+import { addToCart } from '../../store/cartSlice';
 // import { addToCart } from '../store/actions/cartActions';
 
 type Props = {
